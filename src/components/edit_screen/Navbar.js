@@ -1,4 +1,5 @@
 import React from 'react'
+import { Modal, Button,Range } from "react-materialize"
 
 class Navbar extends React.Component {
   constructor() {
@@ -19,6 +20,10 @@ class Navbar extends React.Component {
     console.log("handleGoHome");
     this.props.goToHomeCallback();
   }
+  handleDelete = () => {
+    console.log("handleGoHome");
+    this.props.deleteCallback();
+  }
 
   render() {
     return (
@@ -30,7 +35,25 @@ class Navbar extends React.Component {
             goLogoLo
           </div>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li style={ {cursor: "pointer"} }>&#128465;</li>
+            
+            <Modal
+                            header="Are you sure you want to delete the logo? :( "
+                            trigger={
+                              <li onClick={this.handleDelete} style={ {cursor: "pointer"} }>&#128465;</li>
+                            }
+                            actions={
+                                <div>
+                                    <Button className="waves-effect waves-light btn-small"onClick={this.handleDelete} modal ='close' >YES</Button>
+                                    <Button className="waves-effect waves-light btn-small" modal='close'>NO</Button>
+                                    
+                                </div>
+                            }
+                            
+                        >
+                            
+                        
+                        </Modal>
+
           </ul>
         </div>
       </nav>

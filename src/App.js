@@ -6,6 +6,7 @@ import EditScreen from './components/edit_screen/EditScreen'
 import jsTPS from './transactions/jsTPS.js'
 import ChangeLogo_Transaction from './transactions/ChangeLogo_Transaction.js'
 
+
 // THESE ARE THE App SCREENS
 const AppScreen = {
   HOME_SCREEN: "HOME_SCREEN",
@@ -23,7 +24,16 @@ export const TransactionType = {
 export const LogoDefaults = {
   TEXT : "goLogoLo Logo",
   TEXT_COLOR : "#FF0000",
-  FONT_SIZE : 24
+  FONT_SIZE : 24, 
+  BACKGROUND_COLOR: "#000000",  //add all values
+  BORDER_COLOR: "#FF0000",
+  BORDER_RADIUS: 0,
+  BORDER_WIDTH:0,
+  PADDING:0,
+  MARGIN: 0,
+    
+            
+
 }
 
 // App IS THE ROOT REACT COMPONENT
@@ -145,14 +155,21 @@ class App extends Component {
    * to do the actual work of changing the logo. Note that this function will also
    * then add the built transaction to the stack and execute it.
    */
-  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize) => {
+  buildChangeLogoTransaction = (oldLogo, logoKey, newText, newTextColor, newFontSize, newBackgroundColor,newBorderColor,newBorderRadius,newBorderWidth,newPadding,newMargin) => {
     // THIS WILL BE THE LOGO AFTER THE CHANGE HAPPENS, NOTE WE BUILD
     // AN ENTIRELY NEW LOGO EACH TIME BUT IT SHOULD KEEP THE SAME KEY
+    console.log(newText)
     let postEditLogo = {
       key: logoKey,
       text: newText,
       textColor: newTextColor,
-      fontSize: newFontSize
+      fontSize: newFontSize,
+      backgroundColor: newBackgroundColor,
+      borderColor: newBorderColor,
+      borderRadius: newBorderRadius,
+      borderWidth: newBorderWidth,
+      padding: newPadding,
+      margin: newMargin
     };
 
     // NOW BUILD THE TRANSACTION OBJECT
@@ -173,6 +190,12 @@ class App extends Component {
     this.tps.undoTransaction();
   }
 
+  redo = () => {
+    this.tps.doTransaction();
+  }
+
+  
+
   /**
    * resetTransactions - This method clears all the transactions in
    * the undo/redo stack, which should be done every time the logo
@@ -190,6 +213,12 @@ class App extends Component {
   canUndo = () => {
     return this.tps.hasTransactionToUndo();
   }
+
+  canRedo = () => {
+    return this.tps.hasTransactionToRedo();
+  }
+
+
 
   // THERE ARE SEVEN FUNCTIONS FOR UPDATING THE App state, TWO OF
   // THEM CANNOT BE UNDONE AND SO DO NOT REQUIRE TRANSACTIONS:
@@ -221,10 +250,25 @@ class App extends Component {
       key: this.getHighKey(this.state.logos),
       text: LogoDefaults.TEXT,
       textColor: LogoDefaults.TEXT_COLOR,
-      fontSize: LogoDefaults.FONT_SIZE
+      fontSize: LogoDefaults.FONT_SIZE,
+      backgroundColor: LogoDefaults.BACKGROUND_COLOR,
+      borderColor: LogoDefaults.BORDER_COLOR,
+      borderRadius: LogoDefaults.BORDER_RADIUS,
+      borderWidth: LogoDefaults.BORDER_WIDTH,
+      margin: LogoDefaults.MARGIN,
+      padding: LogoDefaults.PADDING
+
     }
     return newLogo;
   }
+
+  findcurrentkey = () => {
+
+    this.deleteLogo(this.state.currentLogo.key);
+
+  }
+
+
 
   // DELETE THE LOGO WITH logoKey 
   deleteLogo = (logoKey) => {
@@ -268,7 +312,7 @@ class App extends Component {
     const nextLogoToEdit = nextLogos.find((testLogo) => {
       return (testLogo.key === this.state.currentLogo.key);
     });
-    console.log("nextLogoToEdit: " + nextLogoToEdit);
+    console.log("nextLogoToEdit: " + nextLogoToEdit); 
 
     // AND SET THE STATE, WHICH SHOULD FORCE A render
     this.setState({
@@ -292,6 +336,8 @@ class App extends Component {
 
   afterLogoDeleted = () => {
     console.log("App afterLogoDeleted logos: " + this.logosToString(this.state.logos));
+    let logosString = JSON.stringify(this.state.logos);
+    localStorage.setItem("recent_work", logosString);
     // FIRST GO HOME
     this.goToHomeScreen();
   }
@@ -342,10 +388,20 @@ class App extends Component {
       case AppScreen.EDIT_SCREEN:
         return <EditScreen
           logo={this.state.currentLogo}                         // DATA NEEDED BY THIS COMPONENT AND ITS DESCENDANTS
-          goToHomeCallback={this.goToHomeScreen}                    // NAVIGATION CALLBACK
-          changeLogoCallback={this.buildChangeLogoTransaction}  // TRANSACTION CALLBACK
-          undoCallback={this.undo}                        // TRANSACTION CALLBACK                       
-          canUndo={this.canUndo}                          // TRANSACTION CALLBACK
+          goToHomeCallback={this.goToHomeScreen} 
+          deleteCallback={this.findcurrentkey}                   // NAVIGATION CALLBACK
+          changeLogoCallback={this.buildChangeLogoTransaction}
+            // TRANSACTION CALLBACK
+          undoCallback={this.undo} 
+          redoCallback={this.redo} 
+          
+          
+                                // TRANSACTION CALLBACK                       
+          canUndo={this.canUndo} 
+          canRedo= {this.canRedo} 
+          
+           // TRANSACTION CALLBACK
+
 
         />;
       default:

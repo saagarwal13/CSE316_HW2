@@ -57,6 +57,7 @@ export class jsTPS {
 
         // AND EXECUTE IT
         this.doTransaction();
+        console.log(this.transactions);
     }
 
     doTransaction() {
