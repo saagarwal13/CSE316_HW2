@@ -20,9 +20,10 @@ body {
 
 #home_banner_container {
   background-image: linear-gradient(to bottom,         
-  #b8b808, #636723);
+  #ea80fc, #add8e6);
   color: white;
-  font-size: 48pt;
+  font-size: 70pt;
+  font-family: "Times New Roman", Times, serif;
   border-color: black;
   border-width: 2px;
   border-style: solid;

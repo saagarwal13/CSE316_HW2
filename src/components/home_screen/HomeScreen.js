@@ -37,12 +37,12 @@ class HomeScreen extends Component {
                 </div>
                 <div className="col s8">
                     <div id="home_banner_container">
-                        @todo<br />
-                        List Maker
+                        gologoLo<br />
+                        Logo Maker
                     </div>
                     <div>
                         <button
-                            style={{ cursor: "pointer" }}
+                            style={{ cursor: "pointer",backgroundColor: "pink",width: "25%",margin: 10,height:50 }}
                             onClick={this.handleAddNewLogo}>
                             Create a New Logo
                         </button>

@@ -174,8 +174,8 @@ class TextEditSidebar extends Component {
                         <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
                 </div>
-                <div className="card blue-grey darken-1">
-                    <div className="card-content white-text">
+                <div className="card-panel teal lighten-2">
+                    <div className="card-content yellow-text">
                         <span className="card-title">Text</span>
                         <div className="row">
                             <div className="col s4">Color:</div>
