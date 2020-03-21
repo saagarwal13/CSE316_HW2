@@ -147,16 +147,16 @@ class TextEditSidebar extends Component {
             <div className="card-panel col s4">
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <Modal
+                        <Modal style={{backgroundColor: "LightCyan", fontSize: 30}}
                         open={this.openModal}
-                            header="Change Logo"
+                            header="Change Logo Name"
                             trigger={
                                 <Button className="waves-effect waves-light btn-small" >&#9998;</Button>
                             }
                             actions={
-                                <div>
-                                    <Button className="waves-effect waves-light btn-small"modal ='close' >CLOSE</Button>
-                                    <Button className="waves-effect waves-light btn-small"onClick={this.handleEdit }>ENTER</Button>
+                                <div style={{textAlign: "center", padding: 0.5,backgroundColor: "Lavender"} }>
+                                    <Button className="waves-effect waves-light btn"modal ='close' >CLOSE </Button>
+                                    <Button className="waves-effect waves-light btn"onClick={this.handleEdit }>ENTER</Button>
                                     
                                 </div>
                             }
@@ -174,8 +174,8 @@ class TextEditSidebar extends Component {
                         <button className={redoClass} onClick={this.handleRedo}>Redo</button>
                     </div>
                 </div>
-                <div className="card-panel teal lighten-2">
-                    <div className="card-content yellow-text">
+                <div className="card-panel indigo lighten-3">
+                    <div className="card-content black-text">
                         <span className="card-title">Text</span>
                         <div className="row">
                             <div className="col s4">Color:</div>

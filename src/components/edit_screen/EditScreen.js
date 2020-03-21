@@ -64,8 +64,11 @@ export class EditScreen extends Component {
                         canUndo={this.props.canUndo}  
                         canRedo={this.props.canRedo}                       
                     />
+                    <div style={{ overflow: "scroll" }}>
+                    
                     <TextEditWorkspace
                         logo={this.props.logo} />
+                    </div>
                 </div>
             </div>
         )
