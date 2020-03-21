@@ -10,8 +10,9 @@ class TextEditSidebar extends Component {
     constructor() {
 
         super();
-         this.newtext=" ";
-         this.openModal = false;
+         //this.newtext= this.state.text;
+         //this.openModal = false;
+         
 
 
         // WE'LL MANAGE THE UI CONTROL
@@ -28,6 +29,10 @@ class TextEditSidebar extends Component {
             margin: 0,
             
         }
+        this.newtext= this.state.text;
+         this.openModal = false;
+         this.handleChange = this.handleChange.bind(this)
+
     }
     
     
@@ -73,7 +78,7 @@ class TextEditSidebar extends Component {
     }
 
     handleEdit = () => {
-        if(this.newtext.trim()== "")
+        if(this.state.text.trim()== "")
         { 
             alert("blank value entered");
             this.openModal = true;
@@ -81,15 +86,32 @@ class TextEditSidebar extends Component {
         }
         else{
         this.openModal = false;
-        this.setState({ text: this.newtext }, this.completeUserEditing);
+         this.completeUserEditing();
         }
       
     }
     handleChange = (event) => {
-      this.newtext = event.target.value
+        this.openModal= true;
+
+  console.log(this.state.value)
+  //console.log(this.newtext);
+      this.setState({text: event.target.value})
       
+      
+      
+
+    
           
     }
+    handleClose = ()=>
+    {
+        
+        this.newtext = this.state.text;
+        
+        //this.newtext 
+        
+    }
+    
     handleTextColorChange = (event) => {
         console.log("handleTextColorChange to " + event.target.value);
         this.setState({ textColor: event.target.value }, this.completeUserEditing);
@@ -155,14 +177,14 @@ class TextEditSidebar extends Component {
                             }
                             actions={
                                 <div style={{textAlign: "center", padding: 0.5,backgroundColor: "Lavender"} }>
-                                    <Button className="waves-effect waves-light btn"modal ='close' >CLOSE </Button>
+                                    <Button className="waves-effect waves-light btn"modal ='close' onClick={()=>this.setState({text:this.props.logo.text})}  >CLOSE </Button>
                                     <Button className="waves-effect waves-light btn"onClick={this.handleEdit }>ENTER</Button>
                                     
                                 </div>
                             }
                             
                         >
-                            <TextInput value = {this.state.value} onChange={this.handleChange}/>
+                            <TextInput value = {this.state.text} onChange={this.handleChange} />
                             
                             <div id="string"> {this.textstring} </div>
                         
