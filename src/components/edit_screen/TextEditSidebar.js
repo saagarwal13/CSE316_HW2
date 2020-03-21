@@ -171,14 +171,14 @@ class TextEditSidebar extends Component {
                     <div className="card-content white-text">
                         <Modal style={{backgroundColor: "LightCyan", fontSize: 30}}
                         open={this.openModal}
-                            header="Change Logo Name"
+                            header= {<p style={{textAlign: "center"}}> Change Logo Name  &#10549;</p>}
                             trigger={
-                                <Button className="waves-effect waves-light btn-small" >&#9998;</Button>
+                                <Button className="waves-effect waves-light btn-small" style={{backgroundColor: "darkblue", fontSize: 30}} >&#10000;</Button>
                             }
                             actions={
                                 <div style={{textAlign: "center", padding: 0.5,backgroundColor: "Lavender"} }>
-                                    <Button className="waves-effect waves-light btn"modal ='close' onClick={()=>this.setState({text:this.props.logo.text})}  >CLOSE </Button>
-                                    <Button className="waves-effect waves-light btn"onClick={this.handleEdit }>ENTER</Button>
+                                    <Button className="waves-effect waves-light btn"modal ='close' onClick={()=>this.setState({text:this.props.logo.text})}  >CLOSE <span>&#128078;&#127995;</span></Button>
+                                    <Button className="waves-effect waves-light btn"onClick={this.handleEdit }>ENTER <span>&#128077;&#127995;</span></Button>
                                     
                                 </div>
                             }

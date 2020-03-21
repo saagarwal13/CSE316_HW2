@@ -28,9 +28,9 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper">
+        <div className="nav-wrapper" style={ {cursor: "pointer", textAlign: "center", backgroundColor: "lightblue" , fontSize: 70 } }>
           <div  className='brand-logo' 
-                style={ {cursor: "pointer", textAlign: "center"} }
+                style={ {cursor: "pointer", textAlign: "center", backgroundColor: "lightblue",fontSize: 40 } }
                 onClick={this.handleGoHome}>
             goLogoLo
           </div>
@@ -39,7 +39,7 @@ class Navbar extends React.Component {
             <Modal style={{backgroundColor: "LightCyan", fontSize: 30}}
                             header="Are you sure you want to delete the logo? 🧐 "
                             trigger={
-                              <li onClick={this.handleDelete} style={ {cursor: "pointer",fontSize: 30} }>&#128465;</li>
+                              <li onClick={this.handleDelete} style={ {cursor: "pointer",fontSize: 36} }>&#128465;</li>
                             }
                             actions={
                                 <div style={{textAlign: "center", padding: 0.5,backgroundColor: "Lavender"} }>
