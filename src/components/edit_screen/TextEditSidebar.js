@@ -142,10 +142,10 @@ class TextEditSidebar extends Component {
         console.log("handleBorderRadius to " + event.target.value);
         this.setState({ padding: event.target.value }, this.completeUserEditing);
     }
-    //handleMargin = (event) => {
-    //console.log("handleBorderRadius to " + event.target.value);
-    //this.setState({ margin: event.target.value }, this.completeUserEditing);
-    //}
+    handleMargin = (event) => {
+    console.log("handleBorderRadius to " + event.target.value);
+    this.setState({ margin: event.target.value }, this.completeUserEditing);
+    }
 
 
 
@@ -167,7 +167,7 @@ class TextEditSidebar extends Component {
             undoClass += " disabled";
         return (
             <div className="card-panel col s4">
-                <div className="card blue-grey darken-1">
+                <div className="card   grey lighten-1">
                     <div className="card-content white-text">
                         <Modal style={{backgroundColor: "LightCyan", fontSize: 30}}
                         open={this.openModal}
@@ -192,8 +192,8 @@ class TextEditSidebar extends Component {
 
 
 
-                        <button className={undoClass} onClick={this.handleUndo}>Undo</button>
-                        <button className={redoClass} onClick={this.handleRedo}>Redo</button>
+                        <button className={undoClass} style={{backgroundColor: "deep-purple lighten-1"}} onClick={this.handleUndo}>Undo</button>
+                        <button className={redoClass} style={{backgroundColor: "deep-purple lighten-1"}} onClick={this.handleRedo}>Redo</button>
                     </div>
                 </div>
                 <div className="card-panel indigo lighten-3">
